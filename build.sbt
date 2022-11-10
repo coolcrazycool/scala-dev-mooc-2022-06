@@ -10,12 +10,18 @@ lazy val root = (project in file("."))
       name := "scala-dev-mooc-2022-06",
       libraryDependencies ++= Dependencies.zio,
       libraryDependencies ++= Dependencies.zioConfig,
+      libraryDependencies += Dependencies.postgres,
+      libraryDependencies += Dependencies.liquibase,
+      libraryDependencies += Dependencies.logback,
       libraryDependencies += scalaTest % Test,
       libraryDependencies += catsCore,
       libraryDependencies ++= catsEffect,
       libraryDependencies ++= fs2,
       libraryDependencies ++= http4s,
+      libraryDependencies += zioHttp,
       libraryDependencies ++= circe,
+      libraryDependencies ++= quill,
+      libraryDependencies ++= testContainers,
       addCompilerPlugin(Dependencies.kindProjector)
   )
 

@@ -30,10 +30,10 @@ object zioConcurrency {
    // 3. время конца
    // 4.
 
-  def printEffectRunningTime[R, E, A](zio: ZIO[R, E, A]): ZIO[Console with Clock with R, E, A] = for{
+  def printEffectRunningTime[R, E, A](zio: ZIO[R, E, A]) = for{
      start <- currentTime
      r <- zio
-     end <-currentTime
+     end <- currentTime
      _ <- putStrLn(s"Running time ${end - start}")
    } yield r
 
@@ -88,9 +88,9 @@ object zioConcurrency {
    */
 
 
-   lazy val writeUserToDB: ZIO[Console with Clock, Nothing, Unit] = sleep1Second *> putStrLn("writeUserToDB")
+   lazy val writeUserToDB: ZIO[Console with Clock, Nothing, Unit] = sleep1Second *> putStrLn("writeUserToDB").orDie
 
-   lazy val sendMail: ZIO[Console with Clock, Nothing, Unit] = sleep1Second *> putStrLn("sendMail")
+   lazy val sendMail: ZIO[Console with Clock, Nothing, Unit] = sleep1Second *> putStrLn("sendMail").orDie
 
   /**
    * Написать эффект котрый сохранит в базу и отправит почту паралельно
